@@ -1,0 +1,47 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "exordium": {
+      "projectType": "library",
+      "root": "projects/exordium",
+      "sourceRoot": "projects/exordium/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/exordium/tsconfig.lib.json",
+            "project": "projects/exordium/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/exordium/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/exordium/src/test.ts",
+            "tsConfig": "projects/exordium/tsconfig.spec.json",
+            "karmaConfig": "projects/exordium/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/exordium/tsconfig.lib.json",
+              "projects/exordium/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "exordium"
+}
